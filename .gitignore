@@ -26,3 +26,12 @@
 *.exe
 *.out
 *.app
+
+# Android
+build/
+.gradle/
+.idea
+*.iml
+local.properties
+gradle.properties
+
