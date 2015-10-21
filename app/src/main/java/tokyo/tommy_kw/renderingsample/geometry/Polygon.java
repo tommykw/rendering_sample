@@ -41,4 +41,33 @@ public class Polygon {
         float len = (float) mPoints.length;
         return new Point(x / len, y / len);
     }
+
+    public int glnPoint() {
+        return mPoints.length + 1;
+    }
+
+    public Point[] glPoint() {
+        Point[] result = new Point[mPoints.length + 1];
+        result[0] = middle();
+        for (int i = 0; i < mPoints.length; i++) {
+            result[i+1] = mPoints[i];
+        }
+        return result;
+    }
+
+    public int glOrderSize() {
+        return mPoints.length * 3;
+    }
+
+    public short[] glOrder() {
+        short[] result = new short[glOrderSize()];
+        for (short i = 1; i < mPoints.length; i++) {
+            result[i * 3] = 0;
+            result[i * 3 + 1] = i;
+            result[i * 3 + 2] = (short) (i + 1);
+        }
+
+        return result;
+    }
+
 }
