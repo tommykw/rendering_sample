@@ -1,5 +1,8 @@
 package tokyo.tommy_kw.renderingsample.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by tommy on 15/10/23.
  */
@@ -44,5 +47,38 @@ public class Range {
 
     public double max() {
         return v1 > v2 ? v1 : v2;
+    }
+
+    public List<Double> samples(int i) {
+        List<Double> result = new ArrayList<Double>();
+        for (double a : Range.lsamples(i)) {
+            result.add(sample(a));
+        }
+        return result;
+    }
+
+    public static List<Double> lsamples(int i) {
+        List<Double> result = new ArrayList<Double>();
+        if (i == 0) {
+            return result;
+        }
+
+        if (i == 1) {
+            result.add(0.5);
+            return result;
+        }
+
+        for (int x = 0; x < i; x++) {
+            result.add((double)x / (double)(i - 1));
+        }
+        return result;
+    }
+
+    public double rand() {
+        return 0f;
+    }
+
+    public Boolean contain(double v) {
+        return (v1 <= v2) ? (v1 <= v && v <= v2) : (v2 <= v && v <= v1);
     }
 }
