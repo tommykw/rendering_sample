@@ -77,4 +77,107 @@ public class Box {
         double maxy = ycenter + height / 2.0;
         return new Box(minx, miny, maxx, maxy);
     }
+
+    public boolean contain(Point p) {
+        double x = p.getX();
+        double y = p.getY();
+        if (minx <= x && x <= maxx && miny <= y && y <= maxy) {
+            return true;
+        }
+        return false;
+    }
+
+    public Point[] corners() {
+        Point[] result = new Point[4];
+        result[0] = new Point(minx, miny);
+        result[1] = new Point(maxx, miny);
+        result[2] = new Point(maxx, maxy);
+        result[3] = new Point(minx, maxy);
+        return result;
+    }
+
+    public Point[] squarePoints() {
+        Point[] result = new Point[4];
+        double size = size() / 2.0;
+        double centerx = center().getX();
+        double centery = center().getY();
+        result[0] = new Point(centerx - size, centery - size);
+        result[1] = new Point(centerx - size, centery + size);
+        result[2] = new Point(centerx + size, centery + size);
+        result[3] = new Point(centerx + size, centery - size);
+        return result;
+    }
+
+    public boolean intersect(Box box) {
+        double[] coords1 = coords();
+        double[] coords2 = box.coords();
+        if (coords2[0] < coords1[2] && coords2[2] >= coords1[0] && coords2[1] < coords1[3] && coords2[3] >= coords1[1]) {
+            return true;
+        }
+        return false;
+    }
+
+    public Box[] split() {
+        Box[] result = new Box[4];
+        double[] xcoords = coords();
+        double xmin = xcoords[0];
+        double ymin = xcoords[1];
+        double xmax = xcoords[2];
+        double ymax = xcoords[3];
+
+        double xmiddle = (xmin + ymax) / 2.0;
+        double ymiddle = (ymin + ymax) / 2.0;
+
+        result[0] = new Box(xmin, ymin, xmiddle, ymiddle);
+        result[1] = new Box(xmin, ymiddle, xmiddle, ymax);
+        result[2] = new Box(xmiddle, ymin, xmax, ymiddle);
+        result[3] = new Box(xmiddle, ymiddle, xmax, ymax);
+
+        return result;
+    }
+
+    public Box symx(double v) {
+        double min = 2.0 * v - minx;
+        double max = 2.0 * v - maxx;
+        double xmin = Math.min(min, max);
+        double xmax = Math.max(min, max);
+        return new Box(min, miny, xmax, maxy);
+    }
+
+    public double xmin() {
+        return minx;
+    }
+
+    public double ymin() {
+        return miny;
+    }
+
+    public double xmax() {
+        return maxx;
+    }
+
+    public double ymax() {
+        return maxy;
+    }
+
+    public static Box bunion(Box b1, Box b2) {
+        double xmin = Math.min(b1.xmin(), b2.xmin());
+        double xmax = Math.max(b1.xmax(), b2.xmax());
+        double ymin = Math.min(b1.ymin(), b2.ymin());
+        double ymax = Math.min(b1.ymax(), b2.ymax());
+        return new Box(xmin, ymin, xmax, ymax);
+    }
+
+    public static Box bunions(Box[] boxList) {
+        if (boxList.length < 0) {
+            return null;
+        }
+
+        Box result = boxList[0];
+        for (int i = 0; i < boxList.length; i++) {
+            result = Box.bunion(result, boxList[i]);
+        }
+        return result;
+    }
+
 }
