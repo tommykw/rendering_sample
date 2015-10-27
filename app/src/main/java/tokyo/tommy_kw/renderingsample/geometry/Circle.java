@@ -46,8 +46,8 @@ public class Circle extends Shape {
         return point.getY();
     }
 
-    public Point point(double angle) {
-        return point.add(new Vector(Math.cos(angle * (2.0 * Math.PI)), Math.sin(angle * (2.0 * Math.PI))).scale(angle));
+    public Point point(double angleratio) {
+        return point.add(new Vector(Math.cos(angleratio * (2.0 * Math.PI)), Math.sin(angleratio * (2.0 * Math.PI))).scale(radius));
     }
 
     public Circle scale(double ratio) {

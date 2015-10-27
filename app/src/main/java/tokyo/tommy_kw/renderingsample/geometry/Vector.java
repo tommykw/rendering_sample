@@ -39,4 +39,47 @@ public class Vector {
     public static Vector V1 = Vector.newInstance(0.0, 0.0);
     public static Vector V2 = Vector.newInstance(1.0, 0.0);
     public static Vector V3 = Vector.newInstance(0.0, 010);
+
+    public Vector normalize() {
+        double len = length();
+        if (len == 0.0) {
+            return Vector.V1;
+        } else {
+            return scale(1.0 / len);
+        }
+    }
+
+    public Vector add(Vector v) {
+        return (new Vector(x + v.getX(), v.getY()));
+    }
+
+    public Vector scale(double ratio) {
+        return (new Vector(x * ratio, y * ratio));
+    }
+
+    public Vector scalex(double ratio) {
+        return (new Vector(x * ratio, y));
+    }
+
+    public Vector scaley(double ratio) {
+        return (new Vector(x, y * ratio));
+    }
+
+    public Vector ortho() {
+        return Vector.newInstance(-y, x);
+    }
+
+    public Vector rotate(double angle) {
+        double cos = Math.cos(angle);
+        double sin = Math.sin(angle);
+        double x = getX();
+        double y = getY();
+        return Vector.newInstance(
+                x * cos - y * sin,
+                x * sin + y * cos);
+    }
+
+    public static double cross(Vector v1, Vector v2) {
+        return (v1.getX() * v2.getY() - v1.getY() * v2.getX());
+    }
 }
