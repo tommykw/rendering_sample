@@ -1,6 +1,6 @@
 package tokyo.tommy_kw.renderingsample.util;
 
-import android.support.v4.util.Pair;
+import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
