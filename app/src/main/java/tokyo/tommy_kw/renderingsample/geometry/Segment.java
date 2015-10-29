@@ -23,7 +23,7 @@ public class Segment {
         this.y = new Range(p1.getY(), p2.getY());
     }
 
-    public static Segment newInstance(Point p1, Point p2, ) {
+    public static Segment newInstance(Point p1, Point p2) {
         return new Segment(p1, p2);
     }
 
@@ -89,7 +89,7 @@ public class Segment {
     }
 
     public double length2() {
-        return vector().length2();
+        return vector().lengthSqrt();
     }
 
     public ArrayList<Segment> split(int time) {
@@ -118,6 +118,4 @@ public class Segment {
     public static ArrayList<Segment> sort(ArrayList<Segment> segments) {
         return null;
     }
-
-
 }

@@ -24,8 +24,8 @@ public class Point {
     public double getX() { return x; }
     public double getY() { return y; }
 
-    public Point add() {
-        return null;
+    public Point add(Vector v) {
+        return new Point(x + v.getX(), y + v.getY());
     }
 
     public static double distance(Point p1, Point p2) {
