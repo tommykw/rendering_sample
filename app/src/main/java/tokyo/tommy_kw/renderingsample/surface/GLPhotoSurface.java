@@ -14,7 +14,7 @@ import tokyo.tommy_kw.renderingsample.geometry.Polygon;
 /**
  * Created by tommy on 15/10/25.
  */
-public class PhotoSurface extends GLSurfaceView {
+public class GLPhotoSurface extends GLSurfaceView {
     private final GlRenderer renderer;
     private long startTimeDown = 0;
     private long lastTimeMove = 0;
@@ -23,7 +23,7 @@ public class PhotoSurface extends GLSurfaceView {
     private Handler timerHandler;
     private Runnable timerRunnable;
 
-    public PhotoSurface(Context context) {
+    public GLPhotoSurface(Context context) {
         super(context);
         setEGLContextClientVersion(3);
         setEGLConfigChooser(8, 8, 8, 8, 16, 0);

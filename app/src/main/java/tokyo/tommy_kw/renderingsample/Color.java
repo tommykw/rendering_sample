@@ -41,4 +41,19 @@ public class Color {
     public static Color white() { return new Color(1.0, 1.0, 1.0, 1.0); }
     public static Color red() { return new Color(1.0, 0.0, 0.0, 1.0); }
     public static Color yellow() { return new Color(1.0, 1.0, 0.0, 1.0); }
+
+    public static double hue2color(double hue) {
+        return Color.hsv(hue, 1.0, 1.0, 1.0);
+    }
+
+    public static Color hsv(double h, double s, double v, double a) {
+        if (h > 1.0) h -= 1.0;
+        if (h < 0.0) h += 1.0;
+        Double[] rgb = Color.hsv2rgb(h, s, v);
+        return Color.newInstance(rgb[0], rgb[1], rgb[2], a);
+    }
+
+    public static Double hsv2rgb(double h, double s, double v) {
+        if (s == 0.0) {return new Double[]{v,v,v};}
+    }
 }
