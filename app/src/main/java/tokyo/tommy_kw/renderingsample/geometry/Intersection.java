@@ -1,5 +1,7 @@
 package tokyo.tommy_kw.renderingsample.geometry;
 
+import tokyo.tommy_kw.renderingsample.util.Range;
+
 /**
  * Created by tommy on 15/10/28.
  */
@@ -64,8 +66,57 @@ public class Intersection {
             x4 = xp4.getX();
             y4 = xp4.getY();
 
-        }
+            if (x1 == x2 && x2 == x3 && x3 == x4) {
+                if (Range.newInstance(y1, y2).contain(y3)) {
+                    if (Range.newInstance(y1, y2).contain(y4)) {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x3, y3), Point.newInstance(x4, y4)));
+                    } else {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x3, y3), Point.newInstance(x2, y2)));
+                    }
+                } else {
+                    if (Range.newInstance(y1, y2).contain(y4)) {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x1, y1), Point.newInstance(x4, y4)));
+                    } else {
+                        if (Range.newInstance(y3,y4).contain(y1) && Range.newInstance(y3, y4).contain(y2)) {
+                            result =  new Intersection(Segment.newInstance(Point.newInstance(x1, y1), Point.newInstance(x2, y2)));
+                        } else {
+                            result = null;
+                        }
+                    }
+                }
+            } else {
+                if (Range.newInstance(x1, x2).contain(x3)) {
+                    if (Range.newInstance(x1, x2).contain(x4)) {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x3, y3), Point.newInstance(x4, y4)));
+                    } else {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x3, y3), Point.newInstance(x2, y2)));
+                    }
+                } else {
+                    if (Range.newInstance(x1, x2).contain(x4)) {
+                        result = new Intersection(Segment.newInstance(Point.newInstance(x1, y1), Point.newInstance(x4, y4)));
+                    } else {
+                        if (Range.newInstance(x3,x4).contain(x1) && Range.newInstance(x3,x4).contain(x2)) {
+                            result =  new Intersection(Segment.newInstance(Point.newInstance(x1, y1), Point.newInstance(x2, y2)));
+                        } else {
+                            result = null;
+                        }
+                    }
+                }
+            }
 
+            return result;
+        } else if (denom == 0.0) {
+            return null;
+        } else {
+            double ua = uanum / denom;
+            double ub = ubnum / denom;
+            if (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1) {
+                double x = x1 + ua * (x2 - x1);
+                double y = y1 + ua * (y2 - y1);
+                return new Intersection(Point.newInstance(x, y));
+            }
+        }
         return null;
     }
+}
 
