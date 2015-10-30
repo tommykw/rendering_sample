@@ -42,7 +42,7 @@ public class Color {
     public static Color red() { return new Color(1.0, 0.0, 0.0, 1.0); }
     public static Color yellow() { return new Color(1.0, 1.0, 0.0, 1.0); }
 
-    public static double hue2color(double hue) {
+    public static Color hue2color(double hue) {
         return Color.hsv(hue, 1.0, 1.0, 1.0);
     }
 
@@ -53,7 +53,22 @@ public class Color {
         return Color.newInstance(rgb[0], rgb[1], rgb[2], a);
     }
 
-    public static Double hsv2rgb(double h, double s, double v) {
+    public static Double[] hsv2rgb(double h, double s, double v) {
         if (s == 0.0) {return new Double[]{v,v,v};}
+        long i = Math.round(h * 6.0);
+        double f = (h * 6.0) - i;
+        double p = v * (1.0 - s);
+        double q = v * (1.0 - s * f);
+        double t = v * (1.0 - s * (1.0 - f));
+        i = i%6;
+        if (i == 0) {return new Double[]{v,t,p};}
+        if (i == 1) {return new Double[]{q,v,p};}
+        if (i == 2) {return new Double[]{p,v,t};}
+        if (i == 3) {return new Double[]{p,q,v};}
+        if (i == 4) {return new Double[]{t,p,v};}
+        if (i == 5) {return new Double[]{v,p,q};}
+        return null;
     }
+
+
 }

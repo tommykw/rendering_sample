@@ -4,8 +4,8 @@ package tokyo.tommy_kw.renderingsample.geometry;
  * Created by tommy on 15/10/20.
  */
 public class Circle extends Shape {
-    private Point point;
-    private double radius;
+    protected Point point;
+    protected double radius;
 
     public Circle() {
         point = new Point();

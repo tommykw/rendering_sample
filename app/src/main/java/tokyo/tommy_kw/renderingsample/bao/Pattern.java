@@ -60,7 +60,6 @@ public class Pattern {
     }
 
     public static Color index2color(int period, int idx) {
+        return null;
     }
-
-
 }
