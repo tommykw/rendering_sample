@@ -59,5 +59,40 @@ public class Circle extends Shape {
         return null;
     }
 
+    public static Circle circle2tangentout(Circle c1, Circle c2, double radius, double side) {
+        return Circle.circle2tangent(c1, true, c2, true, radius, side)
+    }
 
+    public static Circle circle2tangent(Circle c1, Boolean out1, Circle c2, Boolean out2, double radius, double side) {
+        if (c1 == null || c2 == null) {
+            return null;
+        }
+
+        double x1 = c1.x();
+        double y1 = c1.y();
+        double r1 = c1.r();
+        double x2 = c2.x();
+        double y2 = c2.y();
+        double r2 = c2.r();
+        Vector s3 = Vector.newInstance(c2.point(), c1.point());
+        double l3 = s3.length();
+        double out = 1.0;
+        if (!out1 || !out2) {
+            out = -1.0;
+        }
+        double l1 = r1 + out * radius;
+        double l2 = r2 + radius;
+        double denom = (2.0 * l2 * l3);
+        if (denom == 0.0) {
+            return null;
+        }
+        double cos = (l3 * l3 - l1 * l1 + l2 * l2) / denom;
+        if (cos < -1.0 || cos > 1.0) {
+            return null;
+        }
+        double angle = Math.acos(cos) * side;
+        Vector v = s3.rotate(angle).normalize().scale(l2);
+        Point c = c2.point().add(v);
+        return Circle.newInstace(c, radius);
+    }
 }

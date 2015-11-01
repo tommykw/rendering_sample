@@ -95,11 +95,11 @@ public class Node extends Circle {
     }
 
     public static ArrayList<Node> fromSegement(Segment segment) {
-        return Node.fromSegement(segment, null, -1.0);
+        return fromSegement(segment, null, -1.0);
     }
 
     public static ArrayList<Node> fromSegment(Segment segment, CirclePacking packing) {
-        return Node.fromSegement(segment, packing, -1.0);
+        return fromSegement(segment, packing, -1.0);
     }
 
     public static ArrayList<Node> fromSegment(Segment segment, CirclePacking packing, double rad) {
