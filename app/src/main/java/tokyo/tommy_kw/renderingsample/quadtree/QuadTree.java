@@ -38,8 +38,28 @@ public class QuadTree {
         }
     }
 
+    public ArrayList<Shape> collidings(Shape shape) {
+        ArrayList<Shape> shapes = quad.mayIntersect(shape);
+        ArrayList<Shape> result = new ArrayList<Shape>();
+        for (Shape s : shapes) {
+            if (Shape.intersect(s, shape)) {
+                result.add(shape);
+            }
+        }
+        return result;
+    }
+
+    public Boolean isColliding(Shape shape) {
+        ArrayList<Shape> shapes = quad.mayIntersect(shape);
+        for (Shape s : shapes) {
+            if (Shape.intersect(s, shape)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Shape> shapes() {
         return quad.shapes();
     }
-
 }

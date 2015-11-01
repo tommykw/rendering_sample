@@ -2,7 +2,7 @@ package tokyo.tommy_kw.renderingsample.bao;
 
 import java.util.ArrayList;
 
-import tokyo.tommy_kw.renderingsample.Color;
+import tokyo.tommy_kw.renderingsample.drawer.Color;
 import tokyo.tommy_kw.renderingsample.surface.GLPhotoSurface;
 import tokyo.tommy_kw.renderingsample.util.Utils;
 

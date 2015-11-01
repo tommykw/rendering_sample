@@ -1,4 +1,4 @@
-package tokyo.tommy_kw.renderingsample;
+package tokyo.tommy_kw.renderingsample.drawer;
 
 /**
  * Created by tommy on 15/10/20.

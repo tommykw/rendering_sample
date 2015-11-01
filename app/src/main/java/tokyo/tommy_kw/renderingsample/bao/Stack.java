@@ -88,13 +88,17 @@ public class Stack {
 
     public Node node(int index) {
         for (Node node : nodes) {
+            if (node.index() == index) {
+                return node;
+            }
         }
 
         return null;
     }
 
     public Node next2Node(Node node) {
-        return null;
+        int nodeIndex = prevDirection > 0.0 ? node.index() + 1 : node.index() - 1;
+        return node(nodeIndex);
     }
 
     public void switchStack() {

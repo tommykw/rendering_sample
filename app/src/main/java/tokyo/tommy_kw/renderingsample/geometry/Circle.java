@@ -56,11 +56,17 @@ public class Circle extends Shape {
 
     @Override
     public Box box() {
-        return null;
+        return Box.newInstance(point(), radius());
+    }
+
+    public static Boolean intersect(Circle c1, Circle c2) {
+        double rad = (c1.radius() + c2.radius());
+        Boolean result = (Point.distanceSqrt(c1.point(), c2.point()) < (rad * rad));
+        return result;
     }
 
     public static Circle circle2tangentout(Circle c1, Circle c2, double radius, double side) {
-        return Circle.circle2tangent(c1, true, c2, true, radius, side)
+        return Circle.circle2tangent(c1, true, c2, true, radius, side);
     }
 
     public static Circle circle2tangent(Circle c1, Boolean out1, Circle c2, Boolean out2, double radius, double side) {

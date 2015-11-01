@@ -6,10 +6,9 @@ import android.os.Handler;
 import android.view.MotionEvent;
 
 import timber.log.Timber;
-import tokyo.tommy_kw.renderingsample.Color;
+import tokyo.tommy_kw.renderingsample.drawer.Color;
 import tokyo.tommy_kw.renderingsample.GlRenderer;
 import tokyo.tommy_kw.renderingsample.geometry.Circle;
-import tokyo.tommy_kw.renderingsample.geometry.Polygon;
 
 /**
  * Created by tommy on 15/10/25.
