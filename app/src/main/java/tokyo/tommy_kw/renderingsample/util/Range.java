@@ -2,6 +2,7 @@ package tokyo.tommy_kw.renderingsample.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by tommy on 15/10/23.
@@ -81,4 +82,9 @@ public class Range {
     public Boolean contain(double v) {
         return (v1 <= v2) ? (v1 <= v && v <= v2) : (v2 <= v && v <= v1);
     }
+
+    public double rand(Random rand) {
+        return sample(rand.nextDouble());
+    }
+
 }

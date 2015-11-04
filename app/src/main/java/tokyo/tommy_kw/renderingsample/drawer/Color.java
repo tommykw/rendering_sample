@@ -1,5 +1,7 @@
 package tokyo.tommy_kw.renderingsample.drawer;
 
+import java.util.Random;
+
 /**
  * Created by tommy on 15/10/20.
  */
@@ -68,6 +70,10 @@ public class Color {
         if (i == 4) {return new Double[]{t,p,v};}
         if (i == 5) {return new Double[]{v,p,q};}
         return null;
+    }
+
+    public static Color rand(Random rand, double a) {
+        return new Color(rand.nextDouble(), rand.nextDouble(), rand.nextDouble(), a);
     }
 
 

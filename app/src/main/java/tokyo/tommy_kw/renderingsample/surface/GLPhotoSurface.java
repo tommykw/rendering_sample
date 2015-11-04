@@ -31,7 +31,7 @@ public class GLPhotoSurface extends GLSurfaceView {
     }
 
     public void draw(final Circle circle, final Color color) {
-        Timber.d("draw circle");
+        //Timber.d("draw circle");
         queueEvent(new Runnable() {
             @Override
             public void run() {
