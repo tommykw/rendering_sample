@@ -10,10 +10,10 @@ import tokyo.tommy_kw.renderingsample.util.Utils;
  * Created by tommy on 15/10/29.
  */
 public class Pattern {
-    private ArrayList<Double> radiusPattern;
-    private ArrayList<Color> colorPattern;
-    private int index;
-    private GLPhotoSurface photoSurface;
+    protected ArrayList<Double> radiusPattern;
+    protected ArrayList<Color> colorPattern;
+    protected int index;
+    protected GLPhotoSurface photoSurface;
 
     public Pattern(GLPhotoSurface photoSurface) {
         this.photoSurface = photoSurface;
